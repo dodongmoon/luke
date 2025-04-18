@@ -4385,8 +4385,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const sugarImg  = document.getElementById('sugar-photo');
   // images 폴더에 넣은 sugar 사진 경로를 배열로 나열
   const sugarImages = [
-    '/sugar1.jpg',
-    '/sugar2.jpg',
+    '/luke/images/sugar1.jpg',
+    '/luke/images/sugar2.jpg',
     // ...필요하면 추가
   ];
 
