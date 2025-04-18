@@ -1,0 +1,523 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    /* Simple wool-like texture using gradient */
+    background: radial-gradient(circle, #f0f4c3 10%, transparent 11%),
+                radial-gradient(circle at bottom left, #f0f4c3 5%, transparent 6%),
+                radial-gradient(circle at bottom right, #f0f4c3 5%, transparent 6%),
+                radial-gradient(circle at top left, #f0f4c3 5%, transparent 6%),
+                radial-gradient(circle at top right, #f0f4c3 5%, transparent 6%);
+    background-color: #e8f5e9; /* Light green pasture background */
+    background-size: 3em 3em;
+    color: #5d4037; /* Earthy brown text */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #4b824d; /* Deeper green */
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+header h1 {
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between icon and text */
+}
+
+/* Sheep Icon Style */
+.sheep-icon {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    vertical-align: middle; /* Align icon nicely with text */
+}
+
+header {
+    background-color: #689f38; /* Pasture green */
+    padding: 15px 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    border-bottom: 5px solid #558b2f; /* Darker green border */
+}
+
+#chapter-selection, #content-options, #content-display {
+    background-color: rgba(255, 253, 231, 0.9); /* Creamy white background */
+    padding: 25px;
+    margin: 20px auto;
+    border-radius: 25px; /* More rounded, fluffy feel */
+    box-shadow: 0 10px 20px rgba(104, 159, 56, 0.2); /* Softer green shadow */
+    width: 90%;
+    max-width: 900px;
+    border: 2px dashed #a1887f; /* Dashed brown border like a fence */
+}
+
+#chapter-buttons, #content-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #c5e1a5; /* Lighter pasture green */
+    color: #4e342e; /* Darker brown */
+    border: none;
+    border-radius: 50px; /* Very rounded buttons */
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #aed581; /* Slightly darker green */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:disabled,
+button.disabled {
+    background-color: #e0e0e0; /* Standard disabled grey */
+    color: #9e9e9e;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.chapter-btn {
+    min-width: 60px;
+}
+
+.chapter-btn[disabled] {
+    background-color: #f5f5f5; /* Lighter grey */
+    color: #bdbdbd;
+}
+
+.chapter-btn.active {
+    background-color: #558b2f; /* Darker green to show selection */
+    color: white;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2); /* Inset shadow for pressed effect */
+    transform: scale(0.97); /* Slightly smaller for pressed effect */
+    border: 2px solid #33691e; /* Darker border for emphasis */
+    font-weight: bold;
+}
+
+.chapter-btn.active:hover {
+    transform: scale(0.97); /* Maintain the pressed look even on hover */
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+    background-color: #558b2f; /* Keep the same background on hover */
+}
+
+.hidden {
+    display: none;
+}
+
+.content-section {
+    margin-top: 25px;
+    padding: 20px;
+    border: 1px solid #dcedc8; /* Light green border */
+    border-radius: 15px; /* Consistent rounded corners */
+    background-color: #f1f8e9; /* Very light green background */
+}
+
+.content-section h2 {
+    margin-top: 0;
+    color: #558b2f; /* Darker green */
+    border-bottom: 2px dashed #aed581; /* Dashed green line */
+    padding-bottom: 8px;
+}
+
+#summary-image {
+    display: block;
+    max-width: 60%;
+    height: auto;
+    margin: 0 auto 20px auto;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 5px 10px rgba(104, 159, 56, 0.25);
+    cursor: pointer;
+    transition: max-width 0.3s ease, box-shadow 0.3s ease;
+    border: 4px solid #fff; /* White border */
+}
+
+#summary-image:hover {
+    box-shadow: 0 8px 15px rgba(104, 159, 56, 0.35);
+}
+
+#summary-image.enlarged {
+    max-width: 100%;
+}
+
+#summary-version-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.summary-version-btn {
+    background-color: #a1887f; /* Muted brown */
+    color: #ffffff;
+}
+
+.summary-version-btn.active {
+    background-color: #795548; /* Darker brown */
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+}
+
+/* Add sheep icon next to 'child' version button */
+.summary-version-btn[data-version="child"]::before {
+    content: '🐑'; /* Sheep emoji */
+    margin-right: 5px;
+    font-size: 1.1em;
+}
+
+.summary-text-version {
+    white-space: pre-wrap;
+    font-size: 1.05rem;
+    color: #5d4037; /* Earthy brown */
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.summary-text-version.hidden {
+    display: none;
+}
+
+.quiz-item {
+    background-color: #ffffff;
+    border: 1px solid #c5e1a5; /* Light green border */
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.quiz-item p {
+    margin: 0 0 15px 0;
+    font-size: 1.05rem;
+    color: #5d4037; /* Earthy brown */
+}
+
+.quiz-item .answer {
+    background-color: #e1f5fe; /* Light blue for contrast */
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 4px solid #4fc3f7; /* Blue accent */
+    font-style: normal;
+    font-weight: bold;
+    color: #0277bd; /* Dark blue text */
+    display: none;
+    margin-top: 10px;
+}
+
+.quiz-item button {
+    background-color: #8bc34a; /* Brighter green */
+    color: #fff;
+    font-size: 0.95rem;
+    padding: 6px 12px;
+    border-radius: 15px;
+}
+
+.quiz-item button:hover {
+    background-color: #7cb342; /* Darker shade of green */
+}
+
+#flashcard-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+#flashcard-controls button {
+    padding: 10px 18px;
+}
+
+.speed-controls {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+}
+
+#flashcard-main-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+}
+
+#start-flashcards {
+    background-color: #7cb342; /* Green */
+    color: #fff;
+}
+
+#start-flashcards:disabled {
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+}
+
+#stop-flashcards {
+    background-color: #ef5350; /* Red */
+    color: #fff;
+}
+
+#stop-flashcards:disabled {
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+}
+
+#restart-flashcards {
+    background-color: #ffb74d; /* Orange */
+    color: #fff; /* White text for better contrast */
+}
+
+#restart-flashcards:disabled {
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+}
+
+.speed-btn {
+    background-color: #bcaaa4; /* Muted brown/grey */
+    color: #fff;
+}
+
+.speed-btn.active {
+    background-color: #8d6e63; /* Darker brown/grey */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+#flashcard-display {
+    background-color: #fff;
+    border: 3px dotted #a1887f; /* Dotted brown border */
+    border-radius: 20px; /* More rounded */
+    padding: 30px;
+    min-height: 150px;
+    text-align: center;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 8px rgba(161, 136, 127, 0.2); /* Brown shadow */
+}
+
+#flashcard-question {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    color: #6d4c41; /* Darker brown */
+}
+
+#flashcard-answer {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #0288d1; /* Kept blue for answer clarity */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: #5d4037; /* Dark brown */
+    color: #e8f5e9; /* Light green text */
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+    border-top: 5px solid #4e342e; /* Darkest brown border */
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 15px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.chat-message {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    position: relative;
+    animation: message-pop 0.3s ease-out;
+    align-self: flex-start;
+    background-color: #e1f5fe;
+    border-bottom-left-radius: 5px;
+    margin-left: 10px;
+}
+
+@keyframes message-pop {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Show sheep icon only on first message */
+.chat-message:first-child::before {
+    content: "🐑";
+    position: absolute;
+    left: -30px;
+    top: 20px;
+    font-size: 20px;
+}
+
+/* Add connector between consecutive messages */
+.chat-message:not(:first-child) {
+    margin-top: 5px;
+    border-top-left-radius: 10px;
+}
+
+.chat-message:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+/* Adult Sheep Version Styling */
+.adult-summary-container {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.adult-summary-section {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    border-left: 4px solid #689f38;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.adult-summary-section h3 {
+    color: #4b824d;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 6px;
+}
+
+.adult-summary-section p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.adult-summary-container .section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #689f38;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Special Quiz Buttons */
+.special-quiz-btn {
+    background-color: #2196f3; /* Blue color */
+    color: white;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 12px 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.special-quiz-btn:hover {
+    background-color: #1976d2; /* Darker blue on hover */
+    transform: translateY(-2px);
+}
+
+#special-quiz-buttons {
+    margin-top: 15px;
+}
+
+/* Ensure the quiz question containers have proper spacing */
+#church-quiz-questions, #ai-quiz-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+    #chapter-selection, #content-options, #content-display {
+        width: 95%;
+        margin: 15px auto;
+        padding: 20px;
+        border-radius: 20px; /* Slightly less rounded on mobile */
+    }
+
+    header h1 {
+        font-size: 1.5rem; /* Adjust header size */
+        gap: 5px;
+    }
+
+    .sheep-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    #chapter-buttons, #content-options {
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    button {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        border-radius: 30px; /* Maintain rounded feel */
+    }
+
+    #summary-image {
+        max-width: 80%;
+    }
+
+    #flashcard-controls {
+        gap: 12px;
+    }
+
+    #flashcard-display {
+        padding: 20px;
+        min-height: 120px;
+        border-radius: 15px; /* Slightly less rounded */
+    }
+
+    #flashcard-question {
+        font-size: 1.2em;
+    }
+
+    #flashcard-answer {
+        font-size: 1.15em;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+#summary-image {
+    display: none;
+}

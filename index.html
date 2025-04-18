@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>누가복음 성경 퀴즈</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>
+            <svg class="sheep-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="fluffy" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur" />
+                        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="10" result="turbulence"/>
+                        <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="5" xChannelSelector="R" yChannelSelector="G" result="disp"/>
+                        <feMerge>
+                          <feMergeNode in="blur" />
+                          <feMergeNode in="disp"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <!-- Body -->
+                <ellipse cx="50" cy="65" rx="35" ry="25" fill="#f5f5f5" filter="url(#fluffy)" />
+                <!-- Head -->
+                <ellipse cx="75" cy="45" rx="15" ry="12" fill="#e0e0e0" />
+                <ellipse cx="78" cy="40" rx="4" ry="6" fill="#f5f5f5" transform="rotate(20 78 40)" filter="url(#fluffy)"/>
+                <ellipse cx="72" cy="38" rx="4" ry="6" fill="#f5f5f5" transform="rotate(-10 72 38)" filter="url(#fluffy)"/>
+                <!-- Eyes -->
+                <circle cx="70" cy="45" r="1.5" fill="#424242" />
+                <circle cx="80" cy="45" r="1.5" fill="#424242" />
+                <!-- Legs -->
+                <rect x="35" y="80" width="8" height="15" fill="#e0e0e0" rx="4"/>
+                <rect x="55" y="80" width="8" height="15" fill="#e0e0e0" rx="4"/>
+            </svg>
+              <!-- 양 아이콘 바로 아래에 들어갑니다 -->
+    <img id="sugar-photo"
+         src=""
+         alt="Sugar the dog"
+         style="display:none;
+                position: fixed;      /* 스크롤해도 고정 */
+  top: 10%;             /* 화면 위에서 10% 내려온 위치 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;          /* 화면 가로의 80% */
+  max-width: 900px;     /* 너무 크면 900px을 넘지 않도록 */
+  height: auto;
+  border-radius: 12px;  /* 모서리 살짝 둥글게 */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  z-index: 9999;">
+
+            누가복음 성경 퀴즈
+        </h1>
+    </header>
+
+    <main>
+        <div id="chapter-selection">
+            <h2>장 선택</h2>
+            <div id="chapter-buttons">
+                <!-- 챕터 버튼들(1~24)이 JS로 생성됩니다 -->
+            </div>
+            <div id="special-quiz-buttons" class="button-group">
+                <button id="church-quiz-btn" class="special-quiz-btn">온양제일교회 기출</button>
+                <button id="ai-quiz-btn" class="special-quiz-btn">AI기출변형</button>
+            </div>
+        </div>
+
+        <!-- 요약 / 퀴즈 / 깜빡이 버튼들 -->
+        <div id="content-options" class="hidden">
+            <button data-content="summary" id="summary-btn">AI 요약</button>
+            <button data-content="quiz">퀴즈</button>
+            <button data-content="flashcards">깜빡이</button>
+        </div>
+
+        <!-- 메인 컨텐츠 표시 영역 -->
+        <div id="content-display" class="hidden">
+            
+            <!-- AI 요약 영역 -->
+            <div id="summary-content" class="content-section hidden">
+                <h2>AI 요약</h2>
+                <img id="summary-image" src="" alt="Chapter Summary Image">
+                <div id="summary-version-buttons" class="button-group">
+    <button data-version="child" class="summary-version-btn">어린양 ver</button>
+    <button data-version="adult" class="summary-version-btn">💪장성한 양 ver</button>
+</div>
+                <p id="summary-text-adult" class="summary-text-version hidden"></p>
+                <p id="summary-text-child" class="summary-text-version hidden"></p> 
+            </div>
+
+            <!-- 퀴즈 영역 -->
+            <div id="quiz-content" class="content-section hidden">
+                <h2>퀴즈</h2>
+                <div id="quiz-questions"></div>
+            </div>
+
+            <!-- 깜빡이(Flashcards) 영역 -->
+            <div id="flashcards-content" class="content-section hidden">
+                <h2>깜빡이 (Flashcards)</h2>
+                <div id="flashcard-controls">
+                    <div class="speed-controls button-group">
+                        <button class="speed-btn" data-speed="fast">Fast (1.5s)</button>
+                        <button class="speed-btn active" data-speed="normal">Normal (2.5s)</button>
+                        <button class="speed-btn" data-speed="slow">Slow (4.5s)</button>
+                    </div>
+                    <div id="flashcard-main-controls" class="button-group">
+                        <button id="start-flashcards">시작</button>
+                        <button id="stop-flashcards" disabled>정지</button>
+                        <button id="restart-flashcards" disabled>다시하기</button> 
+                    </div>
+                </div>
+                <div id="flashcard-display">
+                    <p id="flashcard-question"></p>
+                    <p id="flashcard-answer"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 호날두정신. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
